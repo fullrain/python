@@ -1,0 +1,68 @@
+import sys
+import pygame
+from random import choice as ch
+
+def run_game():
+    # 初始化游戏，并创建一个屏幕对象，对屏幕对象加以修饰（填充颜色，或者填充图片）
+    pygame.init()
+        # 导入背景图片
+    images_background_list = []
+    screen_background_image_0 = pygame.image.load("images/background_2.jpg")
+    screen_background_image_1 = pygame.image.load("images/space-624054__340.jpg")
+    screen_background_image_2 = pygame.image.load("images/witch-head-1771758__340.jpg")
+    screen_background_image_3 = pygame.image.load("images/timg0.jpg")
+    screen_background_image_4 = pygame.image.load("images/timg1.jpg")
+    screen_background_image_5 = pygame.image.load("images/timg2.jpg")
+    screen_background_image_6 = pygame.image.load("images/timg3.jpg")
+    images_background_list.append(screen_background_image_0)
+    images_background_list.append(screen_background_image_1)
+    images_background_list.append(screen_background_image_2)
+    images_background_list.append(screen_background_image_3)
+    images_background_list.append(screen_background_image_4)
+    images_background_list.append(screen_background_image_5)
+    images_background_list.append(screen_background_image_6)
+        # 导入场景图片
+    images_frontground_list = []
+    screen_frontground_image_0 = pygame.image.load("images/ship5.png")
+    screen_frontground_image_1 = pygame.image.load("images/ufo2.png")
+    screen_frontground_image_2 = pygame.image.load("images/hudie_l.png")
+    screen_frontground_image_3 = pygame.image.load("images/hudie_r.png")
+    screen_frontground_image_4 = pygame.image.load("images/ship.png")
+    images_frontground_list.append(screen_frontground_image_0)
+    images_frontground_list.append(screen_frontground_image_1)
+    images_frontground_list.append(screen_frontground_image_2)
+    images_frontground_list.append(screen_frontground_image_3)
+    images_frontground_list.append(screen_frontground_image_4)
+    
+        # 根据导入的背景图像大小来获取屏幕宽高
+    screen_width_height = []
+    for image in images_background_list:
+        image_rect = image.get_rect()
+        image_width = image_rect.width
+        image_height = image_rect.height
+        image_width_height = (image_width, image_height)
+        screen_width_height.append(image_width_height)
+    screen = pygame.display.set_mode(screen_width_height[3])
+    screen_rect = screen.get_rect()
+    screen.blit(images_background_list[3], screen_rect)
+    
+        # 设置一个颜色元组列表，从该列表随机选择一个颜色元组用以填充屏幕
+    screen_background_color = [(250, 0, 0), (0, 250, 0), (0, 0, 250), 
+        (0, 0, 0), (250, 250, 250), (230, 230, 230), (250, 250, 0), 
+        (250, 0, 250), (0, 250, 250)]
+    random_screen_color = ch(screen_background_color)
+#    screen.fill(random_screen_color)
+
+    
+    # 开始游戏的主循环
+    while True:
+        
+        # 监视键盘和鼠标事件
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+                
+        # 让最近绘制的屏幕可见    
+        pygame.display.flip()
+run_game()
